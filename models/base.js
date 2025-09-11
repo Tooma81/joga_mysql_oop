@@ -1,5 +1,4 @@
-const pool = require('./your-mysql-pool'); // Replace with your MySQL pool configuration
-
+const pool = require('../utils/db');
 class BaseSQLModel {
   constructor(tableName) {
     this.tableName = tableName;
@@ -21,6 +20,12 @@ class BaseSQLModel {
     const query = `SELECT * FROM ${this.tableName}`;
     const results = await this.executeQuery(query);
     return results;
+  }
+
+  async findOne(where, value) {
+    const query = `SELECT * FROM ${this.tableName} WHERE ${where}="${value}"`
+    const results = await this.executeQuery(query, [where, value])
+    return results[0]
   }
 
   async findById(id) {
