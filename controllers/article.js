@@ -42,6 +42,21 @@ class articleController {
             article: {id: articleId, ...newArticle}
         })
     }
+
+    async updateArticle(req, res){
+        const updatedArticle = {
+            name: req.body.name,
+            slug: req.body.slug,
+            image: req.body.image,
+            body: req.body.body,
+            author_id: req.body.author_id
+        }
+        const affectedRows = await articleModel.update(req.params.id, updatedArticle)
+        res.status(201).json({
+            message: `updated ${affectedRows} article(s)`,
+            article: {...updatedArticle}
+        })
+    }
 }
 
 module.exports = articleController
