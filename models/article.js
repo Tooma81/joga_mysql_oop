@@ -29,5 +29,10 @@ class ArticleModel extends BaseSQLModel {
         const affectedRows = await super.update(id, data)
         return affectedRows
     }
+
+    async delete(id){
+        const affectedRows = await super.delete(id)
+        return affectedRows
+    }
 }
 module.exports = ArticleModel;

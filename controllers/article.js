@@ -54,7 +54,15 @@ class articleController {
         const affectedRows = await articleModel.update(req.params.id, updatedArticle)
         res.status(201).json({
             message: `updated ${affectedRows} article(s)`,
-            article: {...updatedArticle}
+            article: {id: req.params.id, ...updatedArticle}
+        })
+    }
+
+    async deleteArticle(req, res){
+        const affectedRows = await articleModel.delete(req.params.id)
+        res.status(201).json({
+            message: `deleted ${affectedRows} article(s)`,
+            article: {id: req.params.id}
         })
     }
 }
