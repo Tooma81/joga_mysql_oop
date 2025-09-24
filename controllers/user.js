@@ -4,7 +4,7 @@ const userModel = new userDbModel()
 
 class userController {
     async register(req, res){
-        if(await userModel.findOne(req.body.username)){
+        if(await userModel.findByName(req.body.username)){
             res.json({
                 message: 'Username already taken'
             })
@@ -18,7 +18,7 @@ class userController {
                 ['qwerty', 'password'].includes(req.body.password.toLowerCase())
             ){
                 res.json({
-                    message: 'Invalid password'
+                    message: 'Choose a stronger password'
                 })
             } else {
                 const cryptPassword = await bcrypt.hash(req.body.password, 10)
@@ -38,6 +38,31 @@ class userController {
                         user_session: req.session.user
                     })
                 }
+            }
+        }
+    }
+
+    async login(req, res){
+        const userData = await userModel.findByName(req.body.username) 
+        if(!userData){
+            res.json({
+                message: 'User not found'
+            })
+        } else {
+            // check if entered password matches hash and log in
+            if (await bcrypt.compare(req.body.password, userData.password)){
+                req.session.user = {
+                    username: userData.username,
+                    user_id: userData.id
+                }
+                res.json({
+                    message: 'Successfully logged in',
+                    user_session: req.session.user
+                })
+            } else {
+                res.json({
+                    message: `Incorrect password`
+                })
             }
         }
     }
