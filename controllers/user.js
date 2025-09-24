@@ -25,7 +25,8 @@ class userController {
                 const registeredId = await userModel.create({
                     username: req.body.username,
                     email: req.body.email,
-                    password: cryptPassword
+                    password: cryptPassword,
+                    role: 'user'
                 })
                 if(registeredId){
                     const userData = await userModel.findById(registeredId)
@@ -53,7 +54,8 @@ class userController {
             if (await bcrypt.compare(req.body.password, userData.password)){
                 req.session.user = {
                     username: userData.username,
-                    user_id: userData.id
+                    user_id: userData.id,
+                    role: userData.role
                 }
                 res.json({
                     message: 'Successfully logged in',
@@ -71,6 +73,22 @@ class userController {
         const affectedRows = await userModel.delete(req.params.id)
         res.status(201).json({
             message: `deleted ${affectedRows} user(s)`,
+            user: {id: req.params.id}
+        })
+    }
+
+    async addAdmin(req, res){
+        const affectedRows = await userModel.update(req.params.id, {role: 'admin'})
+        res.status(201).json({
+            message: `added ${affectedRows} user(s) as admin`,
+            user: {id: req.params.id}
+        })
+    }
+
+    async removeAdmin(req, res){
+        const affectedRows = await userModel.update(req.params.id, {role: 'user'})
+        res.status(201).json({
+            message: `removed ${affectedRows} user(s) as admin`,
             user: {id: req.params.id}
         })
     }

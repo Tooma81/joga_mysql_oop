@@ -25,6 +25,11 @@ class UserModel extends BaseSQLModel {
         return createdUserId
     }
 
+    async update(id, data){
+        const affectedRows = await super.update(id, data)
+        return affectedRows
+    }
+
     async delete(id){
         const affectedRows = await super.delete(id)
         return affectedRows
