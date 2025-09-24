@@ -66,6 +66,14 @@ class userController {
             }
         }
     }
+
+    async deleteUser(req, res){
+        const affectedRows = await userModel.delete(req.params.id)
+        res.status(201).json({
+            message: `deleted ${affectedRows} user(s)`,
+            user: {id: req.params.id}
+        })
+    }
 }
 
 module.exports = userController;

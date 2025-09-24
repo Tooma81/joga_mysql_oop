@@ -24,5 +24,10 @@ class UserModel extends BaseSQLModel {
         const createdUserId = await super.create(user)
         return createdUserId
     }
+
+    async delete(id){
+        const affectedRows = await super.delete(id)
+        return affectedRows
+    }
 }
 module.exports = UserModel;
