@@ -27,21 +27,19 @@ class articleController {
         })
     }
 
-    async createNewArticle(req, res){
+    async createNewArticle(article_data){
         const newArticle = {
-            name: req.body.name,
-            slug: req.body.slug,
-            image: req.body.image,
-            body: req.body.body,
+            name: article_data.name,
+            slug: article_data.slug,
+            image: article_data.image,
+            body: article_data.body,
             published: new Date().toISOString().slice(0, 19).replace('T', ' '),
-            author_id: req.body.author_id
+            author_id: article_data.author_id
         }
         const articleId = await articleModel.create(newArticle)
-        res.status(201).json({
-            message: `created new article with id ${articleId}`,
-            article: {id: articleId, ...newArticle}
-        })
+        return {id: articleId, ...newArticle}
     }
+    
 
     async updateArticle(req, res){
         const updatedArticle = {

@@ -126,3 +126,18 @@ table td, table th {
 table th {
     background-color: #eee;
 }
+
+.btn {
+    color: #fff;
+    background: #000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    height: 20px;
+}
+
+#index-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
