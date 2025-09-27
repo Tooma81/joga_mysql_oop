@@ -58,10 +58,8 @@ class articleController {
 
     async deleteArticle(req, res){
         const affectedRows = await articleModel.delete(req.params.id)
-        res.status(201).json({
-            message: `deleted ${affectedRows} article(s)`,
-            article: {id: req.params.id}
-        })
+        console.log(`Deleted ${affectedRows} article(s)`)
+        res.redirect('/')
     }
 }
 
