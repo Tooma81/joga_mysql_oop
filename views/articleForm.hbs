@@ -1,20 +1,22 @@
-<h1>Create article</h1>
+<h1>{{#if edit}}Edit article{{else}}Create article{{/if}}</h1>
 
 <form method="post">
     <label for="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="Article name">
+    <input type="text" name="name" id="name" placeholder="Article name" value="{{article.name}}">
 
     <label for="slug">Slug</label>
-    <input type="text" name="slug" id="slug" placeholder="Article slug">
+    <input type="text" name="slug" id="slug" placeholder="Article slug" value="{{article.slug}}">
 
     <label for="image">Image</label>
-    <input type="text" name="image" id="image" placeholder="Article image">
+    <input type="text" name="image" id="image" placeholder="Article image" value="{{article.image}}">
 
     <label for="author_id">Author ID</label>
-    <input type="text" name="author_id" id="author_id" placeholder="Article author ID">
+    <input type="text" name="author_id" id="author_id" placeholder="Article author ID" value="{{article.author_id}}">
 
     <label for="body">Body</label>
-    <textarea name="body" id="body" placeholder="Article body"></textarea>
+    <textarea name="body" id="body" placeholder="Article body">
+        {{article.body}}
+    </textarea>
 
     <button>Publish</button>
 </form>

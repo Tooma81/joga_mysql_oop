@@ -27,6 +27,12 @@ class articleController {
         })
     }
 
+    // Get article data by ID for editing
+    async getArticleById(id) {
+        const article = await articleModel.findById(id)
+        return article
+    }
+
     async createNewArticle(article_data){
         const newArticle = {
             name: article_data.name,
@@ -41,19 +47,16 @@ class articleController {
     }
     
 
-    async updateArticle(req, res){
+    async updateArticle(article_data){
         const updatedArticle = {
-            name: req.body.name,
-            slug: req.body.slug,
-            image: req.body.image,
-            body: req.body.body,
-            author_id: req.body.author_id
+            name: article_data.name,
+            slug: article_data.slug,
+            image: article_data.image,
+            body: article_data.body,
+            author_id: article_data.author_id
         }
-        const affectedRows = await articleModel.update(req.params.id, updatedArticle)
-        res.status(201).json({
-            message: `updated ${affectedRows} article(s)`,
-            article: {id: req.params.id, ...updatedArticle}
-        })
+        const affectedRows = await articleModel.update(article_data.id, updatedArticle)
+        console.log(`updated ${affectedRows} article(s)`)
     }
 
     async deleteArticle(req, res){

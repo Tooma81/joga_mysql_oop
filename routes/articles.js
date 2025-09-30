@@ -19,7 +19,25 @@ router.post('/article/create', async (req, res) => {
 
 // Dynamic article routes
 router.get('/article/:slug', (req, res) => articleController.getArticleBySlug(req, res));
-router.put('/article/edit/:id', (req, res) => articleController.updateArticle(req,res));
+router.get('/article/edit/:id', async (req, res) => {
+    try {
+        const article = await articleController.getArticleById(req.params.id)
+        res.render('articleForm', { article, edit: true})
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error getting article data');
+    } 
+});
+
+router.post('/article/edit/:id', async (req, res) => {
+    try {
+        await articleController.updateArticle({id: req.params.id, ...req.body})
+        res.redirect(`/article/${req.body.slug}`)
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating article');
+    } 
+});
 router.get('/article/delete/:id', (req, res) => articleController.deleteArticle(req,res))
 
 module.exports = router;
