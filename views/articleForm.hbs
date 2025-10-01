@@ -2,16 +2,16 @@
 
 <form method="post">
     <label for="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="Article name" value="{{article.name}}">
+    <input type="text" name="name" id="name" placeholder="Article name" value="{{article.name}}" required>
 
     <label for="slug">Slug</label>
-    <input type="text" name="slug" id="slug" placeholder="Article slug" value="{{article.slug}}">
+    <input type="text" name="slug" id="slug" placeholder="Article slug" value="{{article.slug}}" required>
 
     <label for="image">Image</label>
-    <input type="text" name="image" id="image" placeholder="Article image" value="{{article.image}}">
+    <input type="text" name="image" id="image" placeholder="Article image" value="{{article.image}}" required>
 
     <label for="author_id">Author ID</label>
-    <input type="text" name="author_id" id="author_id" placeholder="Article author ID" value="{{article.author_id}}">
+    <input type="text" name="author_id" id="author_id" placeholder="Article author ID" value="{{article.author_id}}" required>
 
     <label for="body">Body</label>
     <textarea name="body" id="body" placeholder="Article body">
