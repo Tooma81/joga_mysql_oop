@@ -1,0 +1,27 @@
+<h1>Sign up</h1>
+
+{{#if error}}
+<p class="error">{{error}}</p>
+{{/if}}
+
+<form method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Username">
+    {{#unless login}}
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Email">
+    {{/unless}}
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Password">
+
+    <button>
+        {{#if login}}
+        Log in
+        {{else}}
+        Sign up
+        {{/if}}
+        </button>
+</form>
+{{#unless login}}
+<a href="/user/login">Already a member? Log in here.</a>
+{{/unless}}

@@ -93,6 +93,11 @@ header {
     text-align: center;
 }
 
+header .btn {
+    position: absolute;
+    right: 20px;
+}
+
 header a:link, header a:visited, header a:active, header a:hover {
     color: #000;
     text-decoration: none;
@@ -132,8 +137,9 @@ table th {
 }
 
 .btn {
-    color: #fff;
+    color: #fff !important;
     background: #000;
+    font-size: 16px !important;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
@@ -144,4 +150,11 @@ table th {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.error {
+    background: #fa4141;
+    padding: 10px;
+    border: solid 2px #000;
+    border-radius: 5px;
 }
