@@ -11,7 +11,7 @@ router.post('/user/register', async (req, res) => {
         const result = await userController.register(req.body)
         console.log(result)
         if (typeof result != 'string'){
-            res.redirect('/')
+            res.render('loginForm', { session: result })
         } else {
             res.render('loginForm', { error: result })
         }
@@ -27,7 +27,7 @@ router.post('/user/login', async (req, res) => {
         const result = await userController.login(req.body)
         console.log(result)
         if (typeof result != 'string'){
-            res.redirect('/')
+            res.render('loginForm', { login: true, session: result })
         } else {
             res.render('loginForm', { login: true, error: result })
         }

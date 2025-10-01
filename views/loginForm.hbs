@@ -1,7 +1,11 @@
 <h1>Sign up</h1>
 
 {{#if error}}
-<p class="error">{{error}}</p>
+<p class="form-alert alert-error">{{error}}</p>
+{{else}}
+{{#if session}}
+<p class="form-alert alert-success">User session: {{session.username}}, {{session.role}}</p>
+{{/if}}
 {{/if}}
 
 <form method="post">

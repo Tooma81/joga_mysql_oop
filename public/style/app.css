@@ -152,9 +152,18 @@ table th {
     justify-content: space-between;
 }
 
-.error {
-    background: #fa4141;
+/* Form alerts */
+
+.form-alert {
     padding: 10px;
     border: solid 2px #000;
     border-radius: 5px;
+}
+
+.alert-success {
+    background: #89fa95;
+}
+
+.alert-error {
+    background: #fa4141;
 }
